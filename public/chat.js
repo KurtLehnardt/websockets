@@ -1,4 +1,5 @@
 let socket = io.connect('http://localhost:3000')
+let timer
 
 function chat() {
     console.log('chatting...')
@@ -6,18 +7,29 @@ function chat() {
         message: $('#message').val(),
         handle: $('#handle').val()
     })
-    $('#message').empty()
+    $('#message').val('')
 }
 
-$('#message').keypress(function(){
-    socket.emit('typing', handle.value)
-})
+function typing(currently){
+    currently 
+    ? socket.emit('typing', handle.value)
+    : socket.emit('notTyping', handle.value)
+}
 
 socket.on('chat', function(data) {
-    $('#feedback').empty()
-    $('#output').html(`<p>${data.handle} says ${data.message}</p>`)
+    $('#feedback').val('')
+    $('#output').append(`<p>${data.handle}: ${data.message}</p>`)
 })
 
 socket.on('typing', function(data){
-    $('#feedback').html(`<p><em>${data} is typing a message...</em></p>`)
+    console.log(' is typing a message..')
+    if ($('#feedback').text() === ""){
+        $('#feedback').html(`<p><em>${data} is typing a message...</em></p>`)
+    }
+    clearTimeout(timer)
 });
+
+socket.on('notTyping', function(data){
+    console.log('stopped typing..')
+    timer = setTimeout(function(){$('#feedback').empty()}, 300)
+})

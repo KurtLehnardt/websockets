@@ -10,12 +10,15 @@
     <body>
         <h1>Online Chat</h1>
         <script src="./chat.js"></script>
-        <div id="output">
-
+        <div id="chat">
+            <h2>Online Chat</h2>
+            <div id="window">
+                <div id="output"></div>
+                <div id="feedback"></div>
+            </div>
+            <input id="handle" type="text" placeholder="Handle" />
+            <input id="message" onkeydown="typing(true)" onkeyup="typing(false)" placeholder="...">
+            <button id="send" onclick="chat()">Send</button>
         </div>
-        <span id="feedback"></span>
-        <input id="handle">
-        <input id="message">
-        <button id="send" onclick="chat()">Send</button>
     </body>
 </html>
