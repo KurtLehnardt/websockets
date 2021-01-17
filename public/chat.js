@@ -3,11 +3,13 @@ let socket = io.connect('http://parler-chat.herokuapp.com/')
 // let socket = io.connect('http://localhost:3000/')
 let timer
 
+const username = prompt('what is your name?')
+
 function chat() {
     console.log('chatting...')
     socket.emit('chat', {
         message: $('#message').val(),
-        handle: $('#handle').val()
+        handle: username
     })
     $('#message').val('')
 }
@@ -22,8 +24,8 @@ $(()=>{
 
 function typing(currently){
     currently 
-    ? socket.emit('typing', handle.value)
-    : socket.emit('notTyping', handle.value)
+    ? socket.emit('typing', username)
+    : socket.emit('notTyping', username)
 }
 
 function postMessage(data) {

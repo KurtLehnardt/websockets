@@ -17,7 +17,7 @@ h2{
 }
 
 #window{
-    height: 400px;
+    height: 60vh;
     overflow: auto;
     background: #f9f9f9;
 }
@@ -70,7 +70,8 @@ button{
 
 @media only screen and (max-width: 1500px){
     #chat{
-        max-width: 600px;
+        width: 95vw;
+        height: 95vh;
     }
     h2, #handle, #message, #feedback, #output, #send{
         height: 20%vh;
