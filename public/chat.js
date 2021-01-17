@@ -1,6 +1,6 @@
-// let socket = io.connect('http://parler-chat.herokuapp.com/')
-// for dev
-let socket = io.connect('http://localhost:3000/')
+let socket = io.connect('http://parler-chat.herokuapp.com/')
+// // for dev
+// let socket = io.connect('http://localhost:3000/')
 let timer
 
 function chat() {
