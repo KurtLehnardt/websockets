@@ -67,3 +67,13 @@ button{
     width: 100%;
     border-radius: 0 0 2px 2px;
 }
+
+@media only screen and (max-width: 767px){
+    #chat{
+        max-width: 600px;
+    }
+    h2, #handle, #message, #feedback, #output, #send{
+        height: 20%vh;
+        font-size:2em;
+    }
+}
