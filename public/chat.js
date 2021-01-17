@@ -3,13 +3,14 @@ let socket = io.connect('http://parler-chat.herokuapp.com/')
 // let socket = io.connect('http://localhost:3000/')
 let timer
 
-const username = prompt('what is your name?')
+const username = localStorage.getItem('username') ? localStorage.getItem('username') : prompt('what is your name?')
+localStorage.setItem('username', username)
 
 function chat() {
     console.log('chatting...')
     socket.emit('chat', {
         message: $('#message').val(),
-        handle: username
+        handle: localStorage.getItem('username')
     })
     $('#message').val('')
 }
@@ -24,7 +25,7 @@ $(()=>{
 
 function typing(currently){
     currently 
-    ? socket.emit('typing', username)
+    ? socket.emit('typing', localStorage.getItem('username'))
     : socket.emit('notTyping', username)
 }
 
