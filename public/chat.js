@@ -1,4 +1,6 @@
-let socket = io.connect('http://localhost:3000')
+// let socket = io.connect('http://parler-chat.herokuapp.com/')
+// for dev
+let socket = io.connect('http://localhost:3000/')
 let timer
 
 function chat() {
@@ -10,16 +12,26 @@ function chat() {
     $('#message').val('')
 }
 
+$(()=>{
+    $('#message').on('keyup change', function(e){
+    if (e.which === 13){
+        $('#send').click()
+        }
+    })
+})
+
 function typing(currently){
     currently 
     ? socket.emit('typing', handle.value)
     : socket.emit('notTyping', handle.value)
 }
 
-socket.on('chat', function(data) {
+function postMessage(data) {
     $('#feedback').val('')
-    $('#output').append(`<p>${data.handle}: ${data.message}</p>`)
-})
+    $('#output').prepend(`<p>${data.handle}: ${data.message}</p>`)
+}
+
+socket.on('chat', postMessage)
 
 socket.on('typing', function(data){
     if ($('#feedback').text() === ""){
@@ -29,5 +41,5 @@ socket.on('typing', function(data){
 });
 
 socket.on('notTyping', function(data){
-    timer = setTimeout(function(){$('#feedback').empty()}, 300)
+    timer = setTimeout(function(){$('#feedback').empty()}, 600)
 })
