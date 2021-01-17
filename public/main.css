@@ -68,7 +68,7 @@ button{
     border-radius: 0 0 2px 2px;
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 1500px){
     #chat{
         max-width: 600px;
     }
